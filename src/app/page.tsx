@@ -3,11 +3,12 @@
 // ========================================
 
 import Image from "next/image";
-import LeadCaptureForm from "../components/LeadCaptureForm";
+import LeadCaptureForm from "@/components/LeadCaptureForm";
 
 export default function HomePage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-black text-white">
+      {/* HERO */}
       <section className="mx-auto max-w-7xl px-8 pt-16 pb-20">
         <div className="mb-10">
           <Image
@@ -21,6 +22,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid items-center gap-12 md:grid-cols-2">
+          {/* LEFT */}
           <div>
             <div className="mb-6 inline-block rounded-full border border-white/20 px-4 py-1 text-xs tracking-[0.25em] text-[#d6c08d]">
               LAUNCHING SOON
@@ -37,13 +39,16 @@ export default function HomePage() {
               and practical features for real-world trips.
             </p>
 
-            <LeadCaptureForm
-              buttonText="GET MORE INFO"
-              inputClassName="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none sm:w-72"
-              buttonClassName="rounded-xl bg-[#d6c08d] px-5 py-3 text-sm font-medium text-black disabled:opacity-70"
-            />
+            <div className="max-w-md">
+              <LeadCaptureForm
+                buttonText="GET MORE INFO"
+                inputClassName="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none"
+                buttonClassName="rounded-xl bg-[#d6c08d] px-5 py-3 text-sm font-medium text-black disabled:opacity-70"
+              />
+            </div>
           </div>
 
+          {/* RIGHT IMAGE */}
           <div className="relative">
             <Image
               src="/apex-hero.png"
@@ -57,6 +62,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* WHY SECTION */}
       <section className="mx-auto max-w-7xl border-t border-white/10 px-8 py-20">
         <p className="mb-3 text-xs tracking-[0.25em] text-[#d6c08d]">
           WHY APEX
@@ -72,6 +78,7 @@ export default function HomePage() {
         </p>
       </section>
 
+      {/* SECOND CTA */}
       <section className="mx-auto max-w-7xl px-8 py-20">
         <div className="rounded-3xl border border-white/10 bg-white/[0.03] px-8 py-12 md:px-12 md:py-16">
           <p className="mb-3 text-xs tracking-[0.25em] text-[#d6c08d]">
@@ -87,14 +94,17 @@ export default function HomePage() {
             and priority information as Apex Trailers gets closer to launch.
           </p>
 
-          <LeadCaptureForm
-            buttonText="GET MORE INFO"
-            inputClassName="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm outline-none sm:w-80"
-            buttonClassName="rounded-xl bg-[#d6c08d] px-5 py-3 text-sm font-medium text-black disabled:opacity-70"
-          />
+          <div className="max-w-lg">
+            <LeadCaptureForm
+              buttonText="GET MORE INFO"
+              inputClassName="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm outline-none"
+              buttonClassName="rounded-xl bg-[#d6c08d] px-5 py-3 text-sm font-medium text-black disabled:opacity-70"
+            />
+          </div>
         </div>
       </section>
 
+      {/* FOOTER */}
       <footer className="mx-auto max-w-7xl border-t border-white/10 px-8 py-10 text-sm text-white/50">
         © 2026 Apex Trailers. All rights reserved.
       </footer>

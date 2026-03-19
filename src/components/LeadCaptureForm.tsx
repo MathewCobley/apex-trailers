@@ -15,11 +15,13 @@ const initialState: LeadFormState = {
 type Props = {
   inputClassName: string;
   buttonClassName: string;
+  buttonText?: string;
 };
 
 export default function LeadCaptureForm({
   inputClassName,
   buttonClassName,
+  buttonText = "GET MORE INFO",
 }: Props) {
   const [state, formAction, isPending] = useActionState(
     submitLead,
@@ -27,7 +29,10 @@ export default function LeadCaptureForm({
   );
 
   return (
-    <form action={formAction} className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+    <form
+      action={formAction}
+      className="flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+    >
       <input
         type="email"
         name="email"
@@ -37,7 +42,7 @@ export default function LeadCaptureForm({
       />
 
       <button type="submit" className={buttonClassName} disabled={isPending}>
-        {isPending ? "SENDING..." : "GET EARLY ACCESS"}
+        {isPending ? "SENDING..." : buttonText}
       </button>
 
       {state.message ? (
