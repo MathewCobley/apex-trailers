@@ -3,6 +3,7 @@
 // ========================================
 
 import Image from "next/image";
+import { submitLead } from "./actions";
 
 export default function HomePage() {
   return (
@@ -36,17 +37,22 @@ export default function HomePage() {
               and practical features for real-world trips.
             </p>
 
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <form action={submitLead} className="flex flex-col gap-3 sm:flex-row">
               <input
                 type="email"
+                name="email"
+                required
                 placeholder="Enter your email address"
                 className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none sm:w-72"
               />
 
-              <button className="rounded-xl bg-[#d6c08d] px-5 py-3 text-sm font-medium text-black">
-                GET EARLY ACCESS
+              <button
+                type="submit"
+                className="rounded-xl bg-[#d6c08d] px-5 py-3 text-sm font-medium text-black"
+              >
+                GET MORE INFO
               </button>
-            </div>
+            </form>
           </div>
 
           <div className="relative">
@@ -92,17 +98,22 @@ export default function HomePage() {
             and priority information as Apex Trailers gets closer to launch.
           </p>
 
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <form action={submitLead} className="flex flex-col gap-3 sm:flex-row">
             <input
               type="email"
+              name="email"
+              required
               placeholder="Enter your email address"
               className="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm outline-none sm:w-80"
             />
 
-            <button className="rounded-xl bg-[#d6c08d] px-5 py-3 text-sm font-medium text-black">
-              GET EARLY ACCESS
+            <button
+              type="submit"
+              className="rounded-xl bg-[#d6c08d] px-5 py-3 text-sm font-medium text-black"
+            >
+              GET MORE INFO
             </button>
-          </div>
+          </form>
         </div>
       </section>
 
