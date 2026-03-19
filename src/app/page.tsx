@@ -3,7 +3,7 @@
 // ========================================
 
 import Image from "next/image";
-import { submitLead } from "./actions";
+import LeadCaptureForm from "../components/LeadCaptureForm";
 
 export default function HomePage() {
   return (
@@ -37,22 +37,11 @@ export default function HomePage() {
               and practical features for real-world trips.
             </p>
 
-            <form action={submitLead} className="flex flex-col gap-3 sm:flex-row">
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Enter your email address"
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none sm:w-72"
-              />
-
-              <button
-                type="submit"
-                className="rounded-xl bg-[#d6c08d] px-5 py-3 text-sm font-medium text-black"
-              >
-                GET MORE INFO
-              </button>
-            </form>
+            <LeadCaptureForm
+              buttonText="GET MORE INFO"
+              inputClassName="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none sm:w-72"
+              buttonClassName="rounded-xl bg-[#d6c08d] px-5 py-3 text-sm font-medium text-black disabled:opacity-70"
+            />
           </div>
 
           <div className="relative">
@@ -98,22 +87,11 @@ export default function HomePage() {
             and priority information as Apex Trailers gets closer to launch.
           </p>
 
-          <form action={submitLead} className="flex flex-col gap-3 sm:flex-row">
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="Enter your email address"
-              className="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm outline-none sm:w-80"
-            />
-
-            <button
-              type="submit"
-              className="rounded-xl bg-[#d6c08d] px-5 py-3 text-sm font-medium text-black"
-            >
-              GET MORE INFO
-            </button>
-          </form>
+          <LeadCaptureForm
+            buttonText="GET MORE INFO"
+            inputClassName="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm outline-none sm:w-80"
+            buttonClassName="rounded-xl bg-[#d6c08d] px-5 py-3 text-sm font-medium text-black disabled:opacity-70"
+          />
         </div>
       </section>
 

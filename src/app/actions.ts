@@ -8,34 +8,100 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function submitLead(formData: FormData) {
+export type LeadFormState = {
+  success: boolean;
+  message: string;
+};
+
+export async function submitLead(
+  prevState: LeadFormState,
+  formData: FormData
+): Promise<LeadFormState> {
   const email = String(formData.get("email") || "").trim();
 
   if (!email) {
-    throw new Error("Email address is required.");
+    return {
+      success: false,
+      message: "Please enter an email address.",
+    };
   }
 
   if (!process.env.RESEND_API_KEY) {
-    throw new Error("Missing RESEND_API_KEY");
+    return {
+      success: false,
+      message: "Missing RESEND_API_KEY.",
+    };
   }
 
   if (!process.env.LEAD_TO_EMAIL) {
-    throw new Error("Missing LEAD_TO_EMAIL");
+    return {
+      success: false,
+      message: "Missing LEAD_TO_EMAIL.",
+    };
   }
 
   if (!process.env.RESEND_FROM_EMAIL) {
-    throw new Error("Missing RESEND_FROM_EMAIL");
+    return {
+      success: false,
+      message: "Missing RESEND_FROM_EMAIL.",
+    };
   }
 
-  const { error } = await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL,
-    to: process.env.LEAD_TO_EMAIL,
-    subject: "New Apex signup",
-    text: `New signup: ${email}`,
-    replyTo: email,
-  });
+  try {
+    // 1) Notify you
+    const adminResult = await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL,
+      to: process.env.LEAD_TO_EMAIL,
+      subject: "New Apex signup",
+      text: `New signup: ${email}`,
+      replyTo: email,
+    });
 
-  if (error) {
-    throw new Error(error.message || "Failed to send email");
+    if (adminResult.error) {
+      return {
+        success: false,
+        message: adminResult.error.message || "Failed to send notification email.",
+      };
+    }
+
+    // 2) Confirm to the user
+    const userResult = await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL,
+      to: email,
+      subject: "You’re on the list — Apex Trailers",
+      text: `Hi,
+
+Thanks for your interest in Apex Trailers — great to have you with us.
+
+We’re building premium off-road trailers designed for real-world adventure, with a focus on durability, clean design, and practical features.
+
+You’ll be among the first to hear about:
+• Launch updates
+• Product previews
+• Early information
+
+We’ll be in touch soon.
+
+—
+Apex Trailers`,
+    });
+
+    if (userResult.error) {
+      return {
+        success: false,
+        message: userResult.error.message || "Signup saved, but confirmation email failed.",
+      };
+    }
+
+    return {
+      success: true,
+      message: "Thanks — your signup has been received.",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message:
+        error instanceof Error ? error.message : "Something went wrong.",
+    };
   }
 }
