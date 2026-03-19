@@ -3,7 +3,7 @@
 // ========================================
 
 import Image from "next/image";
-import LeadCaptureForm from "@/components/LeadCaptureForm";
+import LeadCaptureForm from "../components/LeadCaptureForm";
 
 export default function HomePage() {
   return (
@@ -22,7 +22,6 @@ export default function HomePage() {
         </div>
 
         <div className="grid items-center gap-12 md:grid-cols-2">
-          {/* LEFT */}
           <div>
             <div className="mb-6 inline-block rounded-full border border-white/20 px-4 py-1 text-xs tracking-[0.25em] text-[#d6c08d]">
               LAUNCHING SOON
@@ -48,7 +47,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* RIGHT IMAGE */}
           <div className="relative">
             <Image
               src="/apex-hero.png"
@@ -62,7 +60,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* WHY SECTION */}
       <section className="mx-auto max-w-7xl border-t border-white/10 px-8 py-20">
         <p className="mb-3 text-xs tracking-[0.25em] text-[#d6c08d]">
           WHY APEX
@@ -78,7 +75,6 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* SECOND CTA */}
       <section className="mx-auto max-w-7xl px-8 py-20">
         <div className="rounded-3xl border border-white/10 bg-white/[0.03] px-8 py-12 md:px-12 md:py-16">
           <p className="mb-3 text-xs tracking-[0.25em] text-[#d6c08d]">
@@ -104,7 +100,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="mx-auto max-w-7xl border-t border-white/10 px-8 py-10 text-sm text-white/50">
         © 2026 Apex Trailers. All rights reserved.
       </footer>
