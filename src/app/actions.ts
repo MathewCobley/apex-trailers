@@ -48,7 +48,7 @@ export async function submitLead(
   }
 
   try {
-    // 1) Notify you
+    // ✅ 1. Email YOU
     const adminResult = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL,
       to: process.env.LEAD_TO_EMAIL,
@@ -60,12 +60,13 @@ export async function submitLead(
     if (adminResult.error) {
       return {
         success: false,
-        message: adminResult.error.message || "Failed to send notification email.",
+        message:
+          adminResult.error.message || "Failed to send notification email.",
       };
     }
 
-    // 2) Confirm to the user
-    const userResult = await resend.emails.send({
+    // ✅ 2. Email THEM
+    await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL,
       to: email,
       subject: "You’re on the list — Apex Trailers",
@@ -85,13 +86,6 @@ We’ll be in touch soon.
 —
 Apex Trailers`,
     });
-
-    if (userResult.error) {
-      return {
-        success: false,
-        message: userResult.error.message || "Signup saved, but confirmation email failed.",
-      };
-    }
 
     return {
       success: true,
