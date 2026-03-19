@@ -5,7 +5,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { submitLead, type LeadFormState } from "@/app/actions";
+import { submitLead, type LeadFormState } from "../app/actions";
 
 const initialState: LeadFormState = {
   success: false,
